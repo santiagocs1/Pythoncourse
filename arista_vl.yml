@@ -1,0 +1,30 @@
+---
+
+- name: create vlans 
+  hosts: arista
+
+  tasks:
+    - name: create vlan ciento treinta y siete
+      eos_vlan: name=santi vlanid=137 
+            username={{ eapi_username }} 
+            password={{ eapi_password }}
+            host={{ eapi_hostname }}
+            port={{ eapi_port }}
+            transport=https
+
+    - name: create vlan ciento treinta y ocho
+      eos_vlan: name=castro vlanid=138
+            username={{ eapi_username }}
+            password={{ eapi_password }}
+            host={{ eapi_hostname }}
+            port={{ eapi_port }}
+            transport=https
+
+    - name: create vlan ciento treinta y nueve
+      eos_vlan: name=sanjurjo vlanid=139
+            username={{ eapi_username }}
+            password={{ eapi_password }}
+            host={{ eapi_hostname }}
+            port={{ eapi_port }}
+            transport=https
+

@@ -1,0 +1,32 @@
+---
+
+- name: clean Arista Ehternet
+  hosts: arista
+
+  tasks:
+    - name: remove description
+      eos_interface: name=Ethernet6 description=""
+            username={{ eapi_username }}
+            password={{ eapi_password }}
+            host={{ eapi_hostname }}
+            port={{ eapi_port }}
+            transport=https
+    - name: remove configuration ethernet six
+      eos_switchport: name=Ethernet6 mode=access access_vlan=1 trunk_allowed_vlans=1-4094
+            username={{ eapi_username }}
+            password={{ eapi_password }}
+            host={{ eapi_hostname }}
+            port={{ eapi_port }}
+            transport=https
+    - name: configure ethernet six command
+      eos_vlan: name={{item.name}} vlanid={{item.vlanid}} state=absent
+            username={{ eapi_username }}
+            password={{ eapi_password }}
+            host={{ eapi_hostname }}
+            port={{ eapi_port }}
+            transport=https
+      with_items:
+        - {name: santi, vlanid: 137}
+        - {name: castro, vlanid: 138}
+        - {name: sanjurjo, vlanid: 139}
+    

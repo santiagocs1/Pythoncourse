@@ -1,0 +1,21 @@
+---
+
+- name: Arista Ehternet
+  hosts: arista
+
+  tasks:
+    - name: configure ethernet six
+      eos_switchport: name=Ethernet6 mode=access access_vlan=137
+            username={{ eapi_username }}
+            password={{ eapi_password }}
+            host={{ eapi_hostname }}
+            port={{ eapi_port }}
+            transport=https
+    - name: configure ethernet six description
+      eos_interface: name=Ethernet6 description="*** IN USE ***"
+            username={{ eapi_username }}
+            password={{ eapi_password }}
+            host={{ eapi_hostname }}
+            port={{ eapi_port }}
+            transport=https
+

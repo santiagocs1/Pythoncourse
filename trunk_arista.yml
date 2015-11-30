@@ -1,0 +1,13 @@
+---
+
+- name: arista trunking
+  hosts: arista
+
+  tasks:
+    - name: configure ethernet six
+      eos_switchport: name=Ethernet6 mode=trunk trunk_native_vlan=1 trunk_allowed_vlans=137,138,139
+            username={{ eapi_username }}
+            password={{ eapi_password }}
+            host={{ eapi_hostname }}
+            port={{ eapi_port }}
+            transport=https
